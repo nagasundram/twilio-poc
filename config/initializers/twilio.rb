@@ -1,0 +1,1 @@
+$twilio = Twilio::REST::Client.new Rails.application.secrets.twilio_sid, Rails.application.secrets.twilio_token

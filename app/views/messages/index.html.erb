@@ -1,0 +1,24 @@
+<%= form_tag("messages/send_sms", :method => "post") do %>
+  <%= label_tag(:to, "Please Enter Number with country code") %>
+  <%= text_field_tag(:to) %>
+  <br/>
+  <%= label_tag(:message, "Please Enter Your Message") %>
+  <%= text_field_tag(:message) %>
+  <%= submit_tag("Send") %>
+<% end %>
+<% @phone = Rails.application.secrets.twilio_number %>
+<h4>For queries ✆ <a href="tel:#{@phone}"><%= @phone %></a></h4>
+
+<div>Messages</div>
+<table>
+  <th>From</th>
+  <th>To</th>
+  <th>Message</th>
+  <% Message.all.each do |message| %>
+    <tr>
+      <td><%= message.from %></td>
+      <td><%= message.to %></td>
+      <td><%= message.body %></td>
+    </tr>
+  <% end %>
+</table>
